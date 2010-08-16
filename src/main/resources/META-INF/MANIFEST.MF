@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Built-By: David Harrison
+Build-Jdk: 1.6.0_17
+Main-Class: com.sfs.jbtimporter.JBTImporter
