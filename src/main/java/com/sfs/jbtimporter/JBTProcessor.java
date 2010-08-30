@@ -21,7 +21,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -62,6 +64,8 @@ public class JBTProcessor {
 
     /** The http client. */
     private HttpClient httpClient;
+    
+    private Map<Character, String> specialCharacterMap;
 
     /** The jira key path. */
     private final String jiraKeyPath = "secure/admin/util/JellyRunner!default.jspa";
@@ -140,6 +144,7 @@ public class JBTProcessor {
         if (StringUtils.isNotBlank(proxyHost) && proxyPort > 0) {
             this.httpClient.getHostConfiguration().setProxy(proxyHost, proxyPort);
         }
+        this.specialCharacterMap = this.initialiseSpecialCharacterMap();
     }
 
     /**
@@ -194,6 +199,15 @@ public class JBTProcessor {
      */
     public final boolean getRevert() {
         return this.revert;
+    }
+    
+    /**
+     * Gets the special character map.
+     * 
+     * @return the special character map
+     */
+    public final Map<Character, String> getSpecialCharacterMap() {
+        return this.specialCharacterMap;
     }
 
     /**
@@ -444,5 +458,188 @@ public class JBTProcessor {
         result = StringUtils.replace(result, ".<BR>", "");
         
         return result;
+    }
+    
+    /**
+     * Gets the special character map.
+     *
+     * @return the special character map
+     */
+    private final Map<Character, String> initialiseSpecialCharacterMap() {
+        
+        final Map<Character, String> map = new HashMap<Character, String>();
+
+        map.put(new Character('\u0100'),"&#256;");
+        map.put(new Character('\u0101'),"&#257;");
+        map.put(new Character('\u0102'),"&#258;");
+        map.put(new Character('\u0103'),"&#259;");
+        map.put(new Character('\u0104'),"&#260;");
+        map.put(new Character('\u0105'),"&#261;");
+        map.put(new Character('\u0106'),"&#262;");
+        map.put(new Character('\u0107'),"&#263;");
+        map.put(new Character('\u0108'),"&#264;");
+        map.put(new Character('\u0108'),"&#265;");
+        map.put(new Character('\u010C'),"&#268;");
+        map.put(new Character('\u010D'),"&#269;");
+        map.put(new Character('\u010E'),"&#270;");
+        map.put(new Character('\u010F'),"&#271;");
+        map.put(new Character('\u0110'),"&#272;");
+        map.put(new Character('\u0111'),"&#273;");
+        map.put(new Character('\u0112'),"&#274;");
+        map.put(new Character('\u0113'),"&#275;");
+        map.put(new Character('\u0118'),"&#280;");
+        map.put(new Character('\u0119'),"&#281;");
+        map.put(new Character('\u011A'),"&#282;");
+        map.put(new Character('\u011B'),"&#283;");
+        map.put(new Character('\u011C'),"&#284;");
+        map.put(new Character('\u011D'),"&#285;");
+        map.put(new Character('\u011E'),"&#286;");
+        map.put(new Character('\u011F'),"&#287;");
+        map.put(new Character('\u0122'),"&#290;");
+        map.put(new Character('\u0123'),"&#291;");
+        map.put(new Character('\u0124'),"&#292;");
+        map.put(new Character('\u0125'),"&#293;");
+        map.put(new Character('\u012A'),"&#298;");
+        map.put(new Character('\u012B'),"&#299;");
+        map.put(new Character('\u0130'),"&#304;");
+        map.put(new Character('\u0131'),"&#305;");
+        map.put(new Character('\u0134'),"&#308;");
+        map.put(new Character('\u0135'),"&#309;");
+        map.put(new Character('\u0136'),"&#310;");
+        map.put(new Character('\u0137'),"&#311;");
+        map.put(new Character('\u0139'),"&#313;");
+        map.put(new Character('\u013A'),"&#314;");
+        map.put(new Character('\u013B'),"&#315;");
+        map.put(new Character('\u013C'),"&#316;");
+        map.put(new Character('\u013D'),"&#317;");
+        map.put(new Character('\u013E'),"&#318;");
+        map.put(new Character('\u0141'),"&#321;");
+        map.put(new Character('\u0142'),"&#322;");
+        map.put(new Character('\u0143'),"&#323;");
+        map.put(new Character('\u0144'),"&#324;");
+        map.put(new Character('\u0145'),"&#325;");
+        map.put(new Character('\u0146'),"&#326;");
+        map.put(new Character('\u0147'),"&#327;");
+        map.put(new Character('\u0148'),"&#328;");
+        map.put(new Character('\u0150'),"&#336;");
+        map.put(new Character('\u0151'),"&#337;");
+        map.put(new Character('\u0154'),"&#340;");
+        map.put(new Character('\u0155'),"&#341;");
+        map.put(new Character('\u0156'),"&#342;");
+        map.put(new Character('\u0157'),"&#343;");
+        map.put(new Character('\u0158'),"&#344;");
+        map.put(new Character('\u0159'),"&#345;");
+        map.put(new Character('\u015A'),"&#346;");
+        map.put(new Character('\u015B'),"&#347;");
+        map.put(new Character('\u015C'),"&#348;");
+        map.put(new Character('\u015D'),"&#349;");
+        map.put(new Character('\u015E'),"&#350;");
+        map.put(new Character('\u015F'),"&#351;");
+        map.put(new Character('\u0160'),"&#352;");
+        map.put(new Character('\u0161'),"&#353;");
+        map.put(new Character('\u0162'),"&#354;");
+        map.put(new Character('\u0163'),"&#355;");
+        map.put(new Character('\u0164'),"&#356;");
+        map.put(new Character('\u0165'),"&#357;");
+        map.put(new Character('\u016A'),"&#362;");
+        map.put(new Character('\u016B'),"&#363;");
+        map.put(new Character('\u016C'),"&#364;");
+        map.put(new Character('\u016D'),"&#365;");
+        map.put(new Character('\u016E'),"&#366;");
+        map.put(new Character('\u016F'),"&#367;");
+        map.put(new Character('\u0170'),"&#368;");
+        map.put(new Character('\u0171'),"&#369;");
+        map.put(new Character('\u0178'),"&#376;");
+        map.put(new Character('\u0179'),"&#377;");
+        map.put(new Character('\u017A'),"&#378;");
+        map.put(new Character('\u017B'),"&#379;");
+        map.put(new Character('\u017C'),"&#380;");
+        map.put(new Character('\u017D'),"&#381;");
+        map.put(new Character('\u017E'),"&#382;");
+        map.put(new Character('\u2116'),"&#8470;");
+        map.put(new Character('\u00C1'),"&Aacute;");
+        map.put(new Character('\u00E1'),"&aacute;");
+        map.put(new Character('\u00C2'),"&Acirc;");
+        map.put(new Character('\u00E2'),"&acirc;");
+        map.put(new Character('\u00C6'),"&AElig;");
+        map.put(new Character('\u00E6'),"&aelig;");
+        map.put(new Character('\u00E0'),"&agrave;");
+        map.put(new Character('\u00C0'),"&Agrave;");
+        map.put(new Character('\u00C5'),"&Aring;");
+        map.put(new Character('\u00E5'),"&aring;");
+        map.put(new Character('\u00C3'),"&Atilde;");
+        map.put(new Character('\u00E3'),"&atilde;");
+        map.put(new Character('\u00C4'),"&Auml;");
+        map.put(new Character('\u00E4'),"&auml;");
+        map.put(new Character('\u2022'),"&bull;");
+        map.put(new Character('\u00C7'),"&Ccedil;");
+        map.put(new Character('\u00E7'),"&ccedil;");
+        map.put(new Character('\u00A9'),"&copy;");
+        map.put(new Character('\u2020'),"&dagger;");
+        map.put(new Character('\u00B0'),"&deg;");
+        map.put(new Character('\u00C9'),"&Eacute;");
+        map.put(new Character('\u00E9'),"&eacute;");
+        map.put(new Character('\u00CA'),"&Ecirc;");
+        map.put(new Character('\u00EA'),"&ecirc;");
+        map.put(new Character('\u00C8'),"&Egrave;");
+        map.put(new Character('\u00E8'),"&egrave;");
+        map.put(new Character('\u00D0'),"&ETH;");
+        map.put(new Character('\u00F0'),"&eth;");
+        map.put(new Character('\u00CB'),"&Euml;");
+        map.put(new Character('\u00EB'),"&euml;");
+        map.put(new Character('\u20AC'),"&euro;");
+        map.put(new Character('\u00CD'),"&Iacute;");
+        map.put(new Character('\u00ED'),"&iacute;");
+        map.put(new Character('\u00CE'),"&Icirc;");
+        map.put(new Character('\u00EE'),"&icirc;");
+        map.put(new Character('\u00A1'),"&iexcl;");
+        map.put(new Character('\u00CC'),"&Igrave;");
+        map.put(new Character('\u00EC'),"&igrave;");
+        map.put(new Character('\u00BF'),"&iquest;");
+        map.put(new Character('\u00CF'),"&Iuml;");
+        map.put(new Character('\u00EF'),"&iuml;");
+        map.put(new Character('\u00AB'),"&laquo;");
+        map.put(new Character('\u2014'),"&mdash;");
+        map.put(new Character('\u00B5'),"&micro;");
+        map.put(new Character('\u00B7'),"&middot;");
+        map.put(new Character('\u2013'),"&ndash;");
+        map.put(new Character('\u00D1'),"&Ntilde;");
+        map.put(new Character('\u00F1'),"&ntilde;");
+        map.put(new Character('\u00D3'),"&Oacute;");
+        map.put(new Character('\u00F3'),"&oacute;");
+        map.put(new Character('\u00D4'),"&Ocirc;");
+        map.put(new Character('\u00F4'),"&ocirc;");
+        map.put(new Character('\u0152'),"&OElig;");
+        map.put(new Character('\u0153'),"&oelig;");
+        map.put(new Character('\u00D2'),"&Ograve;");
+        map.put(new Character('\u00F2'),"&ograve;");
+        map.put(new Character('\u00AA'),"&ordf;");
+        map.put(new Character('\u00BA'),"&ordm;");
+        map.put(new Character('\u00D8'),"&Oslash;");
+        map.put(new Character('\u00F8'),"&oslash;");
+        map.put(new Character('\u00D5'),"&Otilde;");
+        map.put(new Character('\u00F5'),"&otilde;");
+        map.put(new Character('\u00D6'),"&Ouml;");
+        map.put(new Character('\u00F6'),"&ouml;");
+        map.put(new Character('\u00A3'),"&pound;");
+        map.put(new Character('\u00BB'),"&raquo;");
+        map.put(new Character('\u00AE'),"&reg;");
+        map.put(new Character('\u00DF'),"&szlig;");
+        map.put(new Character('\u00DE'),"&THORN;");
+        map.put(new Character('\u00FE'),"&thorn;");
+        map.put(new Character('\u00DA'),"&Uacute;");
+        map.put(new Character('\u00FA'),"&uacute;");
+        map.put(new Character('\u00DB'),"&Ucirc;");
+        map.put(new Character('\u00FB'),"&ucirc;");
+        map.put(new Character('\u00D9'),"&Ugrave;");
+        map.put(new Character('\u00F9'),"&ugrave;");
+        map.put(new Character('\u00F6'),"&uml;");
+        map.put(new Character('\u00DC'),"&Uuml;");
+        map.put(new Character('\u00FC'),"&uuml;");
+        map.put(new Character('\u00DD'),"&Yacute;");
+        map.put(new Character('\u00FD'),"&yacute;");
+        map.put(new Character('\u00FF'),"&yuml;");
+        
+        return map;
     }
 }

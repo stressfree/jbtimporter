@@ -15,8 +15,13 @@
  ******************************************************************************/
 package com.sfs.jbtimporter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -319,12 +324,50 @@ public class JBTImporter {
                         // Rename the existing file with the .old extension
                         xmlFile.renameTo(originalFile);                        
                     }                    
-                    // Rename the temp file to the primary xml file
-                    tempFile.renameTo(xmlFile);
-                    
                 } catch (TransformerException te) {
                     System.out.println("ERROR transforming XML: " + te.getMessage());
                 }
+                
+                // Read the xmlFile and convert the special characters
+                
+                OutputStreamWriter out = null;
+                try {
+                    
+                    final BufferedReader in = new BufferedReader(new InputStreamReader(
+                            new FileInputStream(tempFile), "UTF8"));
+                    
+                    out = new OutputStreamWriter(new FileOutputStream(xmlFile), "UTF-8");
+                                        
+                    int ch = -1;
+                    ch = in.read();
+                    while (ch != -1) {
+                        final char c = (char) ch;
+
+                        if (jbt.getSpecialCharacterMap().containsKey(c)) {
+                            // System.out.println("Replacing character: " + c 
+                            //        + ", " + jbt.getSpecialCharacterMap().get(c));
+                            out.write(jbt.getSpecialCharacterMap().get(c)); 
+                        } else {
+                            out.write(c);
+                        }
+                        ch = in.read();
+                    }                  
+                } catch (IOException ie) {
+                    System.out.println("ERROR converting special characters: " 
+                            + ie.getMessage());                    
+                } finally {
+                    try {
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch ( IOException ie) {
+                        System.out.println("ERROR closing the XML file: " 
+                                + ie.getMessage());
+                    }
+                    // Delete the temporary file
+                    tempFile.delete();
+                }                                
+                
                 System.out.println("-------------------------------------");
             }
         }
