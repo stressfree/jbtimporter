@@ -4,7 +4,7 @@
 	<groupId>com.sfs</groupId>
 	<artifactId>jbtimporter</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>jbtimporter</name>
 	<description>A command line tool for importing BugTrack issues into the Jira issue management system.</description>
 	<url>http://www.stress-free.co.nz/</url>

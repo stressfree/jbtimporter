@@ -1,0 +1,4 @@
+jbtimporter
+===========
+
+Jbtimport is a command line tool for importing BugTrack issues into the Jira issue management system.
