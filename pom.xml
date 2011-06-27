@@ -7,7 +7,7 @@
 	<version>1.0.0</version>
 	<name>jbtimporter</name>
 	<description>A command line tool for importing BugTrack issues into the Jira issue management system.</description>
-	<url>http://www.stress-free.co.nz/</url>
+	<url>htts://github.com/stressfree/jbtimporter/</url>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
